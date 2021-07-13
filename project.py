@@ -1993,8 +1993,13 @@ def index():
                 plt.xlabel('تعداد دفعات شرکت')
                 plt.ylabel('امتیاز')
                 plt.title('غلبه بر تله‌های زندگی')
-                plt.savefig('FG.jpg', format='jpg')
-                plt.show()
+                plt.savefig('nemoudar.jpg')
+                requests.post(
+                url + "sendPhoto",
+                {
+                    "chat_id": chat_id,
+                    "nemoudar.jpg": f"{chat_id}.jpg",
+                })
         else:
             javabsoal=read_json()
             javabsoal.clear()
@@ -2014,7 +2019,7 @@ def read_json(filename=''):
     with open(filename,'r') as target:
         data=json.load(target)
     return data
-write_json({})
+write_json({}, 'file.txt')
 app.run(host="0.0.0.0",port=int(os.environ.get('PORT',5000)))
 
 
